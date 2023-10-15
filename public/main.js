@@ -1,7 +1,9 @@
-const socket = io.connect("http://localhost:8080", { forceNew: true });
+import { connect } from "socket.io-client";
+
+const socket = connect("http://localhost:8080", { forceNew: true });
 
 socket.on("messages", function(data) {
-    console.log("data");
+    console.log(data);
     render(data);
 });
 
@@ -10,10 +12,9 @@ function render(data) {
     const html = data.map(function (elem, index) {
 
         return `<div>
-
                     <strong>${elem.author}</strong> :
                     <em>${elem.text}</em>
-                <div>`;
+                </div>`;
 
     }).join(" ");
 
